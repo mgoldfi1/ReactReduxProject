@@ -1,8 +1,8 @@
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
-
-  export default class Login extends Component {
+  class Login extends Component {
     constructor() {
       super();
       this.state = {
@@ -14,17 +14,26 @@ import React, { Component } from 'react';
       this.setState({
         [event.target.id]: event.target.value
       })
+    }
 
+    handleSubmit = (event) => {
+      event.preventDefault()
+      this.props.logIn()
     }
     render() {
       return (
         <div>
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <input type="text" id="username" placeholder="Username" onChange={this.handleChange} /> <br />
-            <input type="password" id="password" placeholder="Password" onchange={this.handleChange} /> <br />
-            <input type="submit" />
+            <input type="password" id="password" placeholder="Password" onChange={this.handleChange} /> <br />
+            <input type="submit"  />
           </form>
         </div>
       )
     }
   }
+  function mapDispatchToProps(dispatch){
+    return { logIn: () => dispatch({type: "LOG_IN"})}
+}
+
+  export default connect(null, mapDispatchToProps)(Login)

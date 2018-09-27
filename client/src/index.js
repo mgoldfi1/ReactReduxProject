@@ -7,7 +7,14 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import Navbar from './components/Navbar'
 import Login from './components/Login'
 import Header from './components/Header'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import loginReducer from './reducers/loginReducer'
+
+const store = createStore(loginReducer)
+
 ReactDOM.render((
+  <Provider store={store}>
   <Router>
     <React.Fragment>
       <Header />
@@ -17,7 +24,8 @@ ReactDOM.render((
       <Route exact path="/login" component={Login} />
 
     </React.Fragment>
-  </Router>),
+  </Router>
+</Provider>),
   document.getElementById('root')
 );
 registerServiceWorker();
