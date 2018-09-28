@@ -7,7 +7,7 @@ export default class LoginForm extends Component {
       <div>
       <form onSubmit={this.props.handleSubmit}>
         <input type="text" id="username" placeholder="Username" onChange={this.props.handleChange} /> <br />
-        <input type="password" id="password" placeholder="Password" onChange={this.handleChange} /> <br />
+        <input type="password" id="password" placeholder="Password" onChange={this.props.handleChange} /> <br />
         <input type="submit"  />
       </form>
       Wow!
