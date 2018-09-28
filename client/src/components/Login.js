@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import LoginForm from './LoginForm'
 
+
+
   class Login extends Component {
     constructor() {
       super();
@@ -19,34 +21,36 @@ import LoginForm from './LoginForm'
 
     handleSubmit = (event) => {
       event.preventDefault()
-      this.props.logIn()
+
       fetch('/api/users', {
         headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
     },
         method: "POST",
-        body: JSON.stringify(this.state)
+        body: JSON.stringify({user: this.state})
       })
       .then(resp => resp.json())
-      .then(json => console.log(json))
+      .then(json => json.message ? this.props.message(json.message) : this.props.logIn() )
 
     }
     render() {
       return (
         <div>
-          {this.props.loggedIn === false ? <LoginForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} /> : <div>NOT WORKING</div>}
+          {this.props.loggedIn === false ? <LoginForm handleSubmit={this.handleSubmit} message={this.props.text}  handleChange={this.handleChange} /> : <div>NOT WORKING</div>}
         </div>
       )
     }
   }
 
 function mapDispatchToProps(dispatch){
-    return { logIn: () => dispatch({type: "LOG_IN"})}
+    return { logIn: () => (dispatch({type: "LOG_IN"})),
+    message: (text) => dispatch({type: "MESSAGE", text: text })}
 }
 
 const mapStateToProps = state => {
-  return {loggedIn: state.loggedIn}
+  return {loggedIn: state.loggedIn,
+          text: state.message}
 }
 
 

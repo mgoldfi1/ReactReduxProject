@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
-
 export default class LoginForm extends Component {
   render() {
     return (
@@ -10,7 +9,7 @@ export default class LoginForm extends Component {
         <input type="password" id="password" placeholder="Password" onChange={this.props.handleChange} /> <br />
         <input type="submit"  />
       </form>
-      Wow!
+      <div style={{color: 'red'}}>{this.props.message}</div>
       </div>
     )
   }

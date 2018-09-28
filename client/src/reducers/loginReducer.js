@@ -3,12 +3,14 @@ import React, { Component } from 'react';
 
 
 export default function loginReducer ( state = {
-  loggedIn: false
+  loggedIn: false,
+  message: ""
 }, action) {
   switch (action.type) {
     case 'LOG_IN':
-    console.log(action)
-    return state
+    return {...state, loggedIn: true}
+    case 'MESSAGE':
+    return {...state, message: action.text}
     default:
     return state
   }
