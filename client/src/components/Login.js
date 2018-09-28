@@ -20,6 +20,9 @@ import LoginForm from './LoginForm'
     handleSubmit = (event) => {
       event.preventDefault()
       this.props.logIn()
+      fetch('/api/users')
+      .then(resp => resp.json())
+      .then(json => console.log(json))
     }
     render() {
       return (
