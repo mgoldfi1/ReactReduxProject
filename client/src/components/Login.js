@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import LoginForm from './LoginForm'
 
   class Login extends Component {
     constructor() {
@@ -23,17 +24,19 @@ import { connect } from 'react-redux'
     render() {
       return (
         <div>
-          <form onSubmit={this.handleSubmit}>
-            <input type="text" id="username" placeholder="Username" onChange={this.handleChange} /> <br />
-            <input type="password" id="password" placeholder="Password" onChange={this.handleChange} /> <br />
-            <input type="submit"  />
-          </form>
+          {this.props.loggedIn === false ? <LoginForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} /> : <div>NOT WORKING</div>}
         </div>
       )
     }
   }
-  function mapDispatchToProps(dispatch){
+
+function mapDispatchToProps(dispatch){
     return { logIn: () => dispatch({type: "LOG_IN"})}
 }
 
-  export default connect(null, mapDispatchToProps)(Login)
+const mapStateToProps = state => {
+  return {loggedIn: state.loggedIn}
+}
+
+
+  export default connect(mapStateToProps, mapDispatchToProps)(Login)
