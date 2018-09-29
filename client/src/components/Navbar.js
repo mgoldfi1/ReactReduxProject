@@ -31,6 +31,14 @@ const Navbar = () =>
         background: 'darkblue'
       }}
     >Log In</NavLink>
+    <NavLink
+      to="/register"
+      exact
+      style={link}
+      activeStyle={{
+        background: 'darkblue'
+      }}
+    >Register</NavLink>
   </div>;
 
   export default Navbar

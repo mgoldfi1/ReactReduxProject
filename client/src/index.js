@@ -10,7 +10,7 @@ import Header from './components/Header'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import loginReducer from './reducers/loginReducer'
-
+import Register from './components/Register'
 const store = createStore(loginReducer)
 
 ReactDOM.render((
@@ -20,7 +20,7 @@ ReactDOM.render((
       <Header />
       <Navbar />
       <Route exact path="/" component={App} />
-
+      <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
 
     </React.Fragment>
