@@ -8,10 +8,16 @@ import Navbar from './components/Navbar'
 import Login from './components/Login'
 import Header from './components/Header'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import loginReducer from './reducers/loginReducer'
 import Register from './components/Register'
-const store = createStore(loginReducer)
+import thunk from 'redux-thunk';
+import MovieContainer from './components/MovieContainer'
+
+
+
+
+const store = createStore(loginReducer, applyMiddleware(thunk))
 
 ReactDOM.render((
   <Provider store={store}>
@@ -22,7 +28,7 @@ ReactDOM.render((
       <Route exact path="/" component={App} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
-
+      <Route exact path="/movies" component={MovieContainer} />
     </React.Fragment>
   </Router>
 </Provider>),

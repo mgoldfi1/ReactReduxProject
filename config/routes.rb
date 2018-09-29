@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   post '/api/users', to: 'users#show'
   post '/api/register', to: 'users#create'
 
+  get '/api/movies', to: 'movies#all'
+
 end

@@ -4,13 +4,21 @@ import React, { Component } from 'react';
 
 export default function loginReducer ( state = {
   loggedIn: false,
-  message: ""
+  message: "",
+  user: {},
+  loading: false,
+  movies: []
 }, action) {
   switch (action.type) {
     case 'LOG_IN':
-    return {...state, loggedIn: true}
+    return {...state, loggedIn: true, user: action.user}
     case 'MESSAGE':
     return {...state, message: action.text}
+    case 'LOADING':
+    return {...state, loading: true}
+    case 'ADD_MOVIES':
+    console.log(action.movies)
+    return {...state, loading: false, movies: action.movies}
     default:
     return state
   }
