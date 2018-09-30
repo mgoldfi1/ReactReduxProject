@@ -17,7 +17,9 @@ function fetchMovies() {
 
     render() {
       return(
-        <div> Welcome {this.props.user.username}!</div>
+        <div> Welcome {this.props.user.username}!
+        <div>{this.props.loading ? "Loading..." : this.props.movies.map(movie => <div key={movie.id}>{movie.title}</div>)}</div>
+        </div>
       )
     }
 
@@ -26,8 +28,12 @@ function fetchMovies() {
     }
 
  }
+
+
  function mapDispatchToProps(dispatch){
   return { fetchMovies: () => dispatch(fetchMovies()) }
 }
+
+
 
 export default connect(null, mapDispatchToProps)(MovieContainer)
