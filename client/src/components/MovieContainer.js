@@ -18,10 +18,13 @@ function fetchMovies() {
     render() {
       return(
         <div> Welcome {this.props.user.username}!
-        <div>{this.props.loading ? "Loading..." : <MovieReviewForm movies={this.props.movies} /> }</div>
+        <div>{this.props.loading ? "Loading..." : <MovieReviewForm  user={this.props.user} movies={this.props.movies} /> }</div><br /><br />
+        {this.props.user.movies.map(mov => <div key={mov.id}><strong>Review of {mov.title}({mov.year})</strong><p>{mov.reviews.find(rev => rev.user_id === this.props.user.id).content}</p></div>)}
         </div>
       )
     }
+
+
 
     componentDidMount() {
       this.props.fetchMovies()

@@ -37,7 +37,7 @@ import MovieContainer from './MovieContainer'
     render() {
       return (
         <div>
-          {this.props.loggedIn === false ? <LoginForm handleSubmit={this.handleSubmit} message={this.props.text}  handleChange={this.handleChange} /> : <MovieContainer movies={this.props.movies} loading={this.props.loading} user={this.props.user} />}
+          {this.props.loggedIn === false ? <LoginForm handleSubmit={this.handleSubmit} message={this.props.text}  handleChange={this.handleChange} /> : <MovieContainer reviews={this.props.reviews} movies={this.props.movies} loading={this.props.loading} user={this.props.user} />}
         </div>
       )
     }
@@ -53,7 +53,8 @@ const mapStateToProps = state => {
           text: state.message,
           user: state.user,
           movies: state.movies,
-          loading: state.loading}
+          loading: state.loading,
+          reviews: state.reviews}
 }
 
 

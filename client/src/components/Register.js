@@ -39,7 +39,7 @@ import MovieContainer from './MovieContainer'
     render() {
       return (
         <div>
-          {this.props.loggedIn === false ? <RegisterForm handleSubmit={this.handleSubmit} message={this.props.text}  handleChange={this.handleChange} /> : <MovieContainer user={this.props.user}  />}
+          {this.props.loggedIn === false ? <RegisterForm handleSubmit={this.handleSubmit} message={this.props.text}  handleChange={this.handleChange} /> : <MovieContainer movies={this.props.movies} loading={this.props.loading} user={this.props.user} />}
         </div>
       )
     }
@@ -53,7 +53,9 @@ function mapDispatchToProps(dispatch){
 const mapStateToProps = state => {
   return {loggedIn: state.loggedIn,
           text: state.message,
-          user: state.user}
+          user: state.user,
+          movies: state.movies,
+          loading: state.loading}
 }
 
 
