@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
-
+import { connect } from 'react-redux'
 
 const link = {
   width: '100px',
@@ -13,32 +13,65 @@ const link = {
   color: 'white'
 }
 
-const Navbar = () =>
-  <div>
-    <NavLink
-      to="/"
-      exact
-      style={link}
-      activeStyle={{
-        background: 'darkblue'
-      }}
-    >Home</NavLink>
-    <NavLink
-      to="/login"
-      exact
-      style={link}
-      activeStyle={{
-        background: 'darkblue'
-      }}
-    >Log In</NavLink>
-    <NavLink
-      to="/register"
-      exact
-      style={link}
-      activeStyle={{
-        background: 'darkblue'
-      }}
-    >Register</NavLink>
-  </div>;
+const nav1 = (<div>
+  <NavLink
+    to="/"
+    exact
+    style={link}
+    activeStyle={{
+      background: 'darkblue'
+    }}
+  >Home</NavLink>
+  <NavLink
+    to="/login"
+    exact
+    style={link}
+    activeStyle={{
+      background: 'darkblue'
+    }}
+  >Log In</NavLink>
+  <NavLink
+    to="/register"
+    exact
+    style={link}
+    activeStyle={{
+      background: 'darkblue'
+    }}
+  >Register</NavLink>
+</div>)
 
-  export default Navbar
+const nav2 = (<div>
+  <NavLink
+    to="/"
+    exact
+    style={link}
+    activeStyle={{
+      background: 'darkblue'
+    }}
+  >Home</NavLink>
+  <NavLink
+    to="/logout"
+    exact
+    style={link}
+    activeStyle={{
+      background: 'darkblue'
+    }}
+  >Log Out</NavLink>
+</div>)
+
+  class Navbar extends React.Component {
+
+
+    render() {
+      return(
+      <div>{this.props.loggedIn ? nav2 : nav1}</div>
+    )}
+  }
+
+
+  const mapStateToProps = state => {
+    return {loggedIn: state.loggedIn}
+  }
+
+
+  export default connect(mapStateToProps)(Navbar)

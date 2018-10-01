@@ -13,7 +13,7 @@ import loginReducer from './reducers/loginReducer'
 import Register from './components/Register'
 import thunk from 'redux-thunk';
 import MovieContainer from './components/MovieContainer'
-
+import LogOut from './components/LogOut'
 
 
 
@@ -28,6 +28,7 @@ ReactDOM.render((
       <Route exact path="/" component={App} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
+      <Route exact path="/logout" component={LogOut} />
       <Route exact path="/movies" component={MovieContainer} />
     </React.Fragment>
   </Router>

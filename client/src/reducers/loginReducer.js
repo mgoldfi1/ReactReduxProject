@@ -21,6 +21,9 @@ export default function loginReducer ( state = {
     case 'ADD_MOVIES':
     console.log(action.movies)
     return {...state, loading: false, movies: action.movies}
+    case 'LOG_OUT':
+    console.log("logging out")
+    return {...state, loggedIn: false}
     default:
     return state
   }
