@@ -14,7 +14,7 @@ import Register from './components/Register'
 import thunk from 'redux-thunk';
 import MovieContainer from './components/MovieContainer'
 import LogOut from './components/LogOut'
-
+import MovieIndex from './components/MovieIndex'
 
 
 const store = createStore(loginReducer, applyMiddleware(thunk))
@@ -29,7 +29,8 @@ ReactDOM.render((
       <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/logout" component={LogOut} />
-      <Route exact path="/movies" component={MovieContainer} />
+      <Route exact path="/movies" component={MovieIndex} />
+      <Route exact path="/user" component={Login} />
     </React.Fragment>
   </Router>
 </Provider>),

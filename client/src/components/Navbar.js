@@ -57,6 +57,22 @@ const nav2 = (<div>
       background: 'darkblue'
     }}
   >Log Out</NavLink>
+  <NavLink
+    to="/movies"
+    exact
+    style={link}
+    activeStyle={{
+      background: 'darkblue'
+    }}
+  >Movies</NavLink>
+  <NavLink
+    to="/user"
+    exact
+    style={link}
+    activeStyle={{
+      background: 'darkblue'
+    }}
+  >Your Page</NavLink>
 </div>)
 
   class Navbar extends React.Component {
