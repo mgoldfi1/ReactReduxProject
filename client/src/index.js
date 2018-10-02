@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
-import Navbar from './components/Navbar'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import CustomNavbar from './components/Navbar'
 import Login from './components/Login'
 import Header from './components/Header'
 import { Provider } from 'react-redux'
@@ -24,7 +24,7 @@ ReactDOM.render((
   <Router>
     <React.Fragment>
       <Header />
-      <Navbar />
+      <CustomNavbar />
       <Route exact path="/" component={App} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
