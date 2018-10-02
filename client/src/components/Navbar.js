@@ -3,15 +3,7 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-const link = {
-  width: '150px',
-  padding: '50px, 50px, 50px, 50px',
-  margin: '24px, 24px, 24px, 24px',
 
-  background: 'grey',
-  textDecoration: 'none',
-  color: 'white'
-}
 
 const nav1 = (
 <Navbar default collapseOnSelect>
