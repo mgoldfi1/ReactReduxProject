@@ -39,7 +39,6 @@ handleSubmit = (event) => {
   render() {
     return(
       <div>
-      <div>Please Select A Movie To Review</div>
       <div>
         <form onSubmit={this.handleSubmit}>
         <select onChange={this.handleSelect} name="movies">
