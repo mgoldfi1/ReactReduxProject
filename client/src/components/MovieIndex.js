@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom";
-
+import Button from './button'
 
 
  class MovieIndex extends Component {
@@ -23,6 +23,7 @@ import { Redirect } from "react-router-dom";
    }
 
 
+
     render() {
       return (
         <div>
@@ -32,7 +33,7 @@ import { Redirect } from "react-router-dom";
           </select><br/>
           {this.state.reviews.length > 0 ? <strong>Here are some recent reviews!</strong> : ""}
           <ul>
-          {this.state.reviews.map(r => <li>{r.content}</li>)}
+          {this.state.reviews.map(r => <li>{r.content} <Button  /> </li>)}
           </ul>
           </div>
       )

@@ -32,7 +32,8 @@ import handleMessage from '../actions/actionGenerator'
         body: JSON.stringify({user: this.state})
       })
       .then(resp => resp.json())
-      .then(json => json.message ? this.props.message(json.message) : this.props.logIn(json) )
+      .then(json => this.props.logIn(json))
+      .catch(error => this.props.message("Invalid Username Or Password"))
 
     }
 

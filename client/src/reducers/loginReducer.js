@@ -12,8 +12,10 @@ export default function loginReducer ( state = {
 }, action) {
   switch (action.type) {
     case 'LOG_IN':
+    console.log(action)
     return {...state, loggedIn: true, user: action.user}
     case 'MESSAGE':
+    console.log(action)
     return {...state, message: action.text, loggedIn: false}
     case 'LOADING':
     return {...state, loading: true}

@@ -11,7 +11,6 @@ import { fetchMovies } from '../actions/actionGenerator'
   class MovieContainer extends Component {
 
     render() {
-      console.log(this.props.user)
       return(
         <div> <strong>Welcome {this.props.user.username}!</strong><br/>
         <div>{this.props.loading ? "Loading..." : <MovieReviewForm  user={this.props.user} movies={this.props.movies} /> }</div><br /><br />
