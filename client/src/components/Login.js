@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import LoginForm from './LoginForm'
 import MovieContainer from './MovieContainer'
+import handleLogIn from '../actions/actionGenerator'
+import handleMessage from '../actions/actionGenerator'
 
 
   class Login extends Component {
@@ -21,12 +23,11 @@ import MovieContainer from './MovieContainer'
 
     handleSubmit = (event) => {
       event.preventDefault()
-
       fetch('/api/users', {
         headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-    },
+      },
         method: "POST",
         body: JSON.stringify({user: this.state})
       })
@@ -34,7 +35,9 @@ import MovieContainer from './MovieContainer'
       .then(json => json.message ? this.props.message(json.message) : this.props.logIn(json) )
 
     }
+
     render() {
+      console.log(this.props.loggedIn)
       return (
         <div>
           {this.props.loggedIn === false ? <LoginForm handleSubmit={this.handleSubmit} message={this.props.text}  handleChange={this.handleChange} /> : <MovieContainer reviews={this.props.reviews} movies={this.props.movies} loading={this.props.loading} user={this.props.user} />}
@@ -44,8 +47,8 @@ import MovieContainer from './MovieContainer'
   }
 
 function mapDispatchToProps(dispatch){
-    return { logIn: (user) => (dispatch({type: "LOG_IN", user: user})),
-    message: (text) => dispatch({type: "MESSAGE", text: text })}
+    return { logIn: (user) => (dispatch(handleLogIn(user))),
+    message: (text) => dispatch(handleMessage(text))}
 }
 
 const mapStateToProps = state => {

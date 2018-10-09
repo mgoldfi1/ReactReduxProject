@@ -3,21 +3,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { dispatch } from 'redux'
 import MovieReviewForm from './MovieReviewForm'
+import { fetchMovies } from '../actions/actionGenerator'
 
-function fetchMovies() {
-  return (dispatch) => {
-    dispatch({ type: 'LOADING' });
-    return fetch('/api/movies')
-      .then(resp => resp.json())
-      .then(movies => dispatch({ type: 'ADD_MOVIES', movies: movies}));
-  };
-}
 
 
 
   class MovieContainer extends Component {
 
     render() {
+      console.log(this.props.user)
       return(
         <div> <strong>Welcome {this.props.user.username}!</strong><br/>
         <div>{this.props.loading ? "Loading..." : <MovieReviewForm  user={this.props.user} movies={this.props.movies} /> }</div><br /><br />
@@ -35,10 +29,8 @@ function fetchMovies() {
  }
 
 
- function mapDispatchToProps(dispatch){
-  return { fetchMovies: () => dispatch(fetchMovies()) }
-}
 
 
 
-export default connect(null, mapDispatchToProps)(MovieContainer)
+
+export default connect(null, {fetchMovies})(MovieContainer)

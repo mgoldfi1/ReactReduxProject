@@ -1,9 +1,11 @@
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { postReview } from '../actions/actionGenerator'
+import Review from './review'
 
 
- export default class MovieReviewForm extends Component {
+  class MovieReviewForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -31,8 +33,7 @@ handleSubmit = (event) => {
     body: JSON.stringify({review: {content: this.state.content, movie_id: this.state.selected, user_id: this.props.user.id}})
   })
   .then(resp => resp.json())
-  .then(json => {this.setState({review: json});
-                  console.log(json)} )
+  .then(json => this.props.postReview(json))
 
 }
 
@@ -49,8 +50,20 @@ handleSubmit = (event) => {
           <input type="submit" value="Post Review"/>
         </form>
       </div>
-        {this.state.review ? <div><strong>Review of {this.props.movies.find(mov => mov.id === this.state.review.movie_id).title}({this.props.movies.find(mov => mov.id === this.state.review.movie_id).year})</strong><p>{this.state.review.content}</p></div> : ""}
+        {this.props.reviews.length > 0 ? this.props.reviews.map(rev => <Review review={rev} movies={this.props.movies} />) : ""}
       </div>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {loggedIn: state.loggedIn,
+          text: state.message,
+          user: state.user,
+          movies: state.movies,
+          loading: state.loading,
+          reviews: state.reviews}
+}
+
+
+export default connect(mapStateToProps, {postReview})(MovieReviewForm)

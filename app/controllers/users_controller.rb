@@ -7,7 +7,7 @@ def show
  if @user && @user.authenticate(params[:user][:password])
    render json: @user
  else
-   render json: {message: "Invalid Username Or Password"}
+   render json: {message: "Invalid Username Or Password"}, status: 406
  end
 end
 

@@ -12,10 +12,9 @@ export default function loginReducer ( state = {
 }, action) {
   switch (action.type) {
     case 'LOG_IN':
-    console.log(action.user)
     return {...state, loggedIn: true, user: action.user}
     case 'MESSAGE':
-    return {...state, message: action.text}
+    return {...state, message: action.text, loggedIn: false}
     case 'LOADING':
     return {...state, loading: true}
     case 'ADD_MOVIES':
@@ -24,6 +23,9 @@ export default function loginReducer ( state = {
     case 'LOG_OUT':
     console.log("logging out")
     return {...state, loggedIn: false}
+    case 'NEW_REVIEW':
+    console.log(action.review)
+    return {...state, reviews: [...state.reviews, action.review]}
     default:
     return state
   }
